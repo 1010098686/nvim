@@ -13,9 +13,11 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'joshdick/onedark.vim'
 
-Plug 'scrooloose/nerdtree'
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+
+Plug 'preservim/nerdcommenter'
 
 call plug#end()
 
@@ -48,9 +50,7 @@ set t_Co=256
 let g:indentLine_char='|'
 let g:indentLine_enabled=1
 
-map <C-n> :NERDTreeToggle<CR>
-
-let g:python3_host_prog="C:/Users/frederic/software/anaconda/python.exe"
+let g:python3_host_prog="/home/fangk/anaconda3/envs/pytorch10/bin/python3"
 
 let g:coc_global_extensions = ['coc-json', 'coc-python', 'coc-vimlsp']
 
@@ -81,3 +81,5 @@ if exists('*complete_info')
 else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
+
+nnoremap <c-p> :CocCommand python.setInterpreter<CR>
