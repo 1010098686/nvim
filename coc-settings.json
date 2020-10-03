@@ -29,5 +29,33 @@
 		"value": "\uf89f",
 		"variable": "\ue71b"
 	},
-    "codeLens.enable": true
+    "codeLens.enable": true,
+    "explorer.width": 38,
+    "explorer.quitOnOpen": false,
+    "explorer.sources": [
+        {
+            "name": "buffer",
+            "expand": false
+        },
+        {
+            "name": "file",
+            "expand": true
+        }
+    ],
+    "explorer.file.column.indent.indentLine": true,
+    "explorer.file.showHiddenFiles": true,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.file.column.git.showIgnored": true,
+    "explorer.keyMappingMode": "none",
+    "explorer.buffer.showHiddenBuffers": false,
+    "explorer.keyMappings": {
+        "<cr>":"open",
+        "i": "open",
+        "I": "openInVsplit",
+        "r":"refresh",
+        "w":"nodePrev",
+        "s": "nodeNext",
+        "a": "gotoParent",
+        "<tab>":"actionMenu"
+    }
 }

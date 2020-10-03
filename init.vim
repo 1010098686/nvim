@@ -3,7 +3,7 @@
 set nocompatible
 filetype off
 
-call plug#begin(stdpath('data').'/plugged')
+call plug#begin('$HOME/.local/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'
 
@@ -14,8 +14,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'joshdick/onedark.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 Plug 'preservim/nerdcommenter'
 
@@ -50,9 +48,9 @@ set t_Co=256
 let g:indentLine_char='|'
 let g:indentLine_enabled=1
 
-let g:python3_host_prog="/home/fangk/anaconda3/envs/pytorch10/bin/python3"
+let g:python3_host_prog="/usr/bin/python"
 
-let g:coc_global_extensions = ['coc-json', 'coc-python', 'coc-vimlsp']
+let g:coc_global_extensions = ['coc-json', 'coc-python', 'coc-vimlsp', "coc-explorer"]
 
 set hidden
 set updatetime=100
@@ -83,3 +81,4 @@ else
 endif
 
 nnoremap <c-p> :CocCommand python.setInterpreter<CR>
+nnoremap <c-e> :CocCommand explorer<CR>
