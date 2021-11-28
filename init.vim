@@ -82,3 +82,6 @@ endif
 
 nnoremap <c-p> :CocCommand python.setInterpreter<CR>
 nnoremap <c-e> :CocCommand explorer<CR>
+
+nnoremap <c-n> :tabn<CR>
+nnoremap <c-b> :tabp<CR>
