@@ -52,6 +52,7 @@
         "<cr>":"open",
         "i": "open",
         "I": "openInVsplit",
+	"t": "open:tab",
         "r":"refresh",
         "w":"nodePrev",
         "s": "nodeNext",
