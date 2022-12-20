@@ -17,6 +17,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'preservim/nerdcommenter'
 
+Plug 'nvim-lua/plenary.nvim'
+
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
 call plug#end()
 
 filetype plugin indent on
@@ -85,3 +89,8 @@ nnoremap <c-e> :CocCommand explorer<CR>
 
 nnoremap <c-n> :tabn<CR>
 nnoremap <c-b> :tabp<CR>
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
