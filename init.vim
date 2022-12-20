@@ -21,6 +21,8 @@ Plug 'nvim-lua/plenary.nvim'
 
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
+Plug 'numToStr/FTerm.nvim'
+
 call plug#end()
 
 filetype plugin indent on
@@ -94,3 +96,11 @@ nnoremap <c-b> :tabp<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
+
+lua << EOF
+require('FTerm').setup({
+    cmd='powershell'
+})
+EOF
+
+nnoremap <leader>i :lua require('FTerm').toggle()<CR>
