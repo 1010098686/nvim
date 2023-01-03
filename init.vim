@@ -1,5 +1,3 @@
-"set fileencodings=utf-8,utf-16,gb2312,gbk,gb18030,latin1,ucs-bom
-
 set nocompatible
 filetype off
 
@@ -13,6 +11,8 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'joshdick/onedark.vim'
 
+Plug 'morhetz/gruvbox'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'preservim/nerdcommenter'
@@ -23,13 +23,17 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
 Plug 'numToStr/FTerm.nvim'
 
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'romgrk/barbar.nvim'
+
 call plug#end()
 
 filetype plugin indent on
 
 syntax on
 
-colorscheme onedark
+colorscheme gruvbox
 
 set number numberwidth=5
 set mouse=a
@@ -56,7 +60,7 @@ let g:indentLine_enabled=1
 
 let g:python3_host_prog="/usr/bin/python"
 
-let g:coc_global_extensions = ['coc-json', 'coc-python', 'coc-vimlsp', "coc-explorer"]
+let g:coc_global_extensions = ['coc-json', 'coc-python', 'coc-vimlsp']
 
 set hidden
 set updatetime=100
@@ -87,10 +91,13 @@ else
 endif
 
 nnoremap <c-p> :CocCommand python.setInterpreter<CR>
-nnoremap <c-e> :CocCommand explorer<CR>
+"nnoremap <c-e> :CocCommand explorer<CR>
+nnoremap <c-e> :NvimTreeToggle<CR>
 
-nnoremap <c-n> :tabn<CR>
-nnoremap <c-b> :tabp<CR>
+nnoremap <c-n> <Cmd>BufferNext<CR>
+nnoremap <c-b> <Cmd>BufferPrevious<CR>
+nnoremap <c-m> <Cmd>BufferClose<CR>
+nnoremap <leader>bp <Cmd>BufferPick<CR>
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -101,6 +108,46 @@ lua << EOF
 require('FTerm').setup({
     cmd='powershell'
 })
+
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+
+local nvim_tree_events = require('nvim-tree.events')
+local bufferline_api = require('bufferline.api')
+
+local function get_tree_size()
+  return require'nvim-tree.view'.View.width
+end
+
+nvim_tree_events.subscribe('TreeOpen', function()
+  bufferline_api.set_offset(get_tree_size())
+end)
+
+nvim_tree_events.subscribe('Resize', function()
+  bufferline_api.set_offset(get_tree_size())
+end)
+
+nvim_tree_events.subscribe('TreeClose', function()
+  bufferline_api.set_offset(0)
+end)
 EOF
 
 nnoremap <leader>i :lua require('FTerm').toggle()<CR>
