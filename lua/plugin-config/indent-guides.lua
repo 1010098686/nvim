@@ -1,4 +1,3 @@
-
 require('indent_guides').setup({
     indent_levels = 30;
     indent_guide_size = 1;
